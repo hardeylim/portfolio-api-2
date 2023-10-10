@@ -84,6 +84,6 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  allowed_hosts = ENV['PROD_HOSTS'].split(',')
+
   config.hosts << "portfolio-api-production-a566.up.railway.app"
 end
