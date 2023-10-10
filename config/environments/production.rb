@@ -85,5 +85,5 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   allowed_hosts = ENV['PROD_HOSTS'].split(',')
-  config.hosts += allowed_hosts
+  config.hosts << "portfolio-api-production-a566.up.railway.app"
 end
