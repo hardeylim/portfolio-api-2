@@ -86,6 +86,7 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  config.hosts << 'portfolio-api-production-a566.up.railway.app'
+  prod_hosts = ENV['RAILS_HOSTS']&.split(',')
+  config.hosts << prod_hosts if prod_hosts.present?
   config.secret_key_base = ENV['SECRET_KEY_BASE']
 end
