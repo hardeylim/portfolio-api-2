@@ -87,8 +87,8 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   config.hosts.clear
-  prod_hosts = ENV['RAILS_HOSTS']&.split(',')
-  config.hosts << prod_hosts if prod_hosts.present?
+  prod_hosts = ENV['PROD_HOSTS']&.split(',')
+  config.hosts.concat(prod_hosts) if prod_hosts.present?
   puts "Hosts: #{config.hosts}"
   config.secret_key_base = ENV['SECRET_KEY_BASE']
 end
