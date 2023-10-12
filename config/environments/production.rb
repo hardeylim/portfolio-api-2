@@ -89,6 +89,6 @@ Rails.application.configure do
   config.hosts.clear
   prod_hosts = ENV['RAILS_HOSTS']&.split(',')
   config.hosts << prod_hosts if prod_hosts.present?
-  console.log "Hosts: #{config.hosts}"
+  puts "Hosts: #{config.hosts}"
   config.secret_key_base = ENV['SECRET_KEY_BASE']
 end
