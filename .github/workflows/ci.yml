@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+jobs:
+  checks:
+    name: Run checks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Setup Ruby and install gems
+        uses: ruby/setup-ruby@v1.156.0
+        with:
+          bundler-cache: true
+      - name: Run linters
+        run:
+          bundle exec rubocop --parallel
+
+
+
+#  test:
+#    runs-on: ubuntu-latest
+#    services:
+#      postgres:
+#        image: postgres:11-alpine
+#        ports:
+#          - "5432:5432"
+#        env:
+#          POSTGRES_DB: portfolio_api_test
+#          POSTGRES_USER: rails
+#          POSTGRES_PASSWORD: password
+
