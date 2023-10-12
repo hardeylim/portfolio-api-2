@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # app/controllers/v1/welcome_controller.rb
 module V1
   class WelcomeController < ApplicationController
