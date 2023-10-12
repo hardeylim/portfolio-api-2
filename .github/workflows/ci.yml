@@ -11,6 +11,29 @@ jobs:
   checks:
     name: Run checks
     runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:13
+        ports:
+          - 5432:5432
+        env:
+          POSTGRES_DB: portfolio_api_test
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+#      postgres:
+#        image: postgres:11-alpine
+#        ports:
+#          - "5432:5432"
+#        env:
+#          POSTGRES_DB: remote_workmate_test
+#          POSTGRES_USER: rails
+#          POSTGRES_PASSWORD: password
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -22,17 +45,8 @@ jobs:
         run:
           bundle exec rubocop --parallel
 
+      - name: Run tests
+        run:
+          bundle exec rspec
 
-
-#  test:
-#    runs-on: ubuntu-latest
-#    services:
-#      postgres:
-#        image: postgres:11-alpine
-#        ports:
-#          - "5432:5432"
-#        env:
-#          POSTGRES_DB: portfolio_api_test
-#          POSTGRES_USER: rails
-#          POSTGRES_PASSWORD: password
 
